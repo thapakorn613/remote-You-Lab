@@ -1,0 +1,62 @@
+<div class="col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h1>Live Streamming Video Link.</h1>
+        </div>
+        <div class="card-body">
+            {{#if lab1}}
+                {{lab1}}
+                {{!-- <a href="/delete-contact/{{@key}}" class="btn btn-danger">Delete</a> --}}
+            {{else}}
+                <p>No lab1 Yet.</p>
+            {{/if}}
+            {{#if lab2}}
+                {{lab2}}
+                {{!-- <a href="/delete-contact/{{@key}}" class="btn btn-danger">Delete</a> --}}
+            {{else}}
+                <p>No lab2 Yet.</p>
+            {{/if}}
+            {{#if lab3}}
+                {{lab3}}
+                {{!-- <a href="/delete-contact/{{@key}}" class="btn btn-danger">Delete</a> --}}
+            {{else}}
+                <p>No lab3 Yet.</p>
+            {{/if}}
+        </div>
+        <div class="card-footer">
+            <form action="/new-set-lab1" method="POST">
+                <div class="form-group">
+                    Lab1 
+                </div>
+                <div class="form-group">
+                    <input type="text" name="linkLab1" placeholder="link Lab1" class="form-control" autofocus>
+                    <button class="btn btn-primary btn-block">
+                        Submit Lab1
+                    </button>
+                </div>
+            </form>
+            <form action="/new-set-lab2" method="POST">
+                <div class="form-group">
+                    Lab2
+                </div>
+                <div class="form-group">
+                    <input type="text" name="linkLab2" placeholder="link Lab2" class="form-control">
+                    <button class="btn btn-primary btn-block">
+                        Submit Lab2 
+                    </button>
+                </div>
+            </form>
+            <form action="/new-set-lab3" method="POST">
+                <div class="form-group">
+                    Lab3 
+                </div>
+                <div class="form-group">
+                    <input type="text" name="linkLab3" placeholder="link Lab3" class="form-control">
+                    <button class="btn btn-primary btn-block">
+                        Submit Lab3
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+body {
+    background-image: url("logo-remote-lab.png"); /* The image used */
+  background-color: #95eaff; /* Used if the image is unavailable */
+  height: 1px; /* You must set a specified height */
+  background-repeat: repeat; /* Do not repeat the image */
+}
