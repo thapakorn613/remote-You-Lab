@@ -1,0 +1,1 @@
+$env:GOOGLE_APPLICATION_CREDENTIALS="D:\gogoRemoteLab\program\remoteYouLab\remoteyoulab-firebase-adminsdk-y1zfv-ef1eb24613.json"
