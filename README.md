@@ -1,5 +1,5 @@
 Run : npm run dev 
-node version : 10.13.0
+- > node version : 10.13.0
 
 firebase : https://console.firebase.google.com/u/0/project/remoteyoulab/database/remoteyoulab/data
 - > host : remoteyoulab/
