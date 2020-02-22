@@ -1,32 +1,109 @@
+<script type="text/javascript">
+    function checkLab1() {
+        var checkbox = document.getElementById('lab1');
+        if (checkbox.checked == true) {
+            console.log("remotelab/status/lab1/on")
+        } else {
+            console.log("remotelab/status/lab1/off")
+        }
+    }function checkLab2() {
+        
+        var checkbox2 = document.getElementById('lab2');
+        if (checkbox2.checked == true) {
+            console.log("remotelab/status/lab2/on")
+        } else {
+            console.log("remotelab/status/lab2/off")
+        }
+    }
+    function checkLab3() {
+        var checkbox3 = document.getElementById('lab3');
+        if (checkbox3.checked == true) {
+            console.log("remotelab/status/lab3/on")
+        } else {
+            console.log("remotelab/status/lab3/off")
+        }
+    }
+</script>
 <div class="col-md-6 offset-md-3">
     <div class="card">
         <div class="card-header">
             <h1>Live Streamming Video Link.</h1>
         </div>
+        <form action="/send-mqtt" method="POST">
+            <div class="form-group">
+                <button class="btn btn-success btn-block">
+                    Send Mqtt
+                </button>
+
+                <div class="form-group">
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>
+                                <center> Lab1 </center>
+                            </th>
+                            <th>
+                                <center> Lab2 </center>
+                            </th>
+                            <th>
+                                <center> Lab3 </center>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <th>
+                                <center>
+                                    <label class="switch">
+                                        <input type="checkbox" onclick="checkLab1()" id="lab1" non-check />
+                                        <span class="slider round"></span>
+                                    </label>
+                                </center>
+                            </th>
+                            <th>
+                                <center>
+                                    <label class="switch">
+                                        <input type="checkbox" onclick="checkLab2()" id="lab2" non-checked />
+                                        <span class="slider round"></span>
+                                    </label>
+                                </center>
+                            </th>
+                            <th>
+                                <center>
+                                    <label class="switch">
+                                        <input type="checkbox" onclick="checkLab3()" id="lab3" non-checked />
+                                        <span class="slider round"></span>
+                                    </label>
+                                </center>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
         <div class="card-body">
             {{#if lab1}}
-                {{lab1}}
-                {{!-- <a href="/delete-contact/{{@key}}" class="btn btn-danger">Delete</a> --}}
+            {{lab1}}
+            {{!-- <a href="/delete-contact/{{@key}}" class="btn btn-danger">Delete</a> --}}
             {{else}}
-                <p>No lab1 Yet.</p>
+            <p>No lab1 Yet.</p>
             {{/if}}
             {{#if lab2}}
-                {{lab2}}
-                {{!-- <a href="/delete-contact/{{@key}}" class="btn btn-danger">Delete</a> --}}
+            {{lab2}}
+            {{!-- <a href="/delete-contact/{{@key}}" class="btn btn-danger">Delete</a> --}}
             {{else}}
-                <p>No lab2 Yet.</p>
+            <p>No lab2 Yet.</p>
             {{/if}}
             {{#if lab3}}
-                {{lab3}}
-                {{!-- <a href="/delete-contact/{{@key}}" class="btn btn-danger">Delete</a> --}}
+            {{lab3}}
+            {{!-- <a href="/delete-contact/{{@key}}" class="btn btn-danger">Delete</a> --}}
             {{else}}
-                <p>No lab3 Yet.</p>
+            <p>No lab3 Yet.</p>
             {{/if}}
         </div>
         <div class="card-footer">
             <form action="/new-set-lab1" method="POST">
                 <div class="form-group">
-                    Lab1 
+                    Lab1
                 </div>
                 <div class="form-group">
                     <input type="text" name="linkLab1" placeholder="link Lab1" class="form-control" autofocus>
@@ -42,13 +119,13 @@
                 <div class="form-group">
                     <input type="text" name="linkLab2" placeholder="link Lab2" class="form-control">
                     <button class="btn btn-primary btn-block">
-                        Submit Lab2 
+                        Submit Lab2
                     </button>
                 </div>
             </form>
             <form action="/new-set-lab3" method="POST">
                 <div class="form-group">
-                    Lab3 
+                    Lab3
                 </div>
                 <div class="form-group">
                     <input type="text" name="linkLab3" placeholder="link Lab3" class="form-control">
@@ -57,6 +134,7 @@
                     </button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>

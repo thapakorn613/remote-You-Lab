@@ -1,8 +1,10 @@
 const { Router } = require("express");
 
 const router = Router();
-const admin = require("firebase-admin");
+const admin = require("firebase-admin")
+const MqttLab = require('./mqttLab')
 
+var mqttTest = new MqttLab()
 // var serviceAccount = require(process.env.GOOGLE_APPLICATIONS_CREDENTIALS);
 var serviceAccount = require("../../remoteyoulab-firebase-adminsdk-y1zfv-ef1eb24613.json");
 
@@ -12,6 +14,17 @@ admin.initializeApp({
 });
 
 const db = admin.database();
+
+router.post("/send-mqtt", (req, res) => {
+    mqttTest.sendMqtt("lab1","off")
+    res.redirect("/")
+});
+
+router.post("/send-mqtt", (req, res) => {
+    mqttTest.mqttEcho()
+    mqttTest.sendMqtt("lab2","on")
+    res.redirect("/")
+});
 
 router.get("/", (req, res) => {
   db.ref().once("value", snap => {

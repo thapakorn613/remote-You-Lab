@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const morgan = require('morgan');
-
+// const mqttLab = require('./routes/mqtt_test')
 const app = express();
 
 // Settings
