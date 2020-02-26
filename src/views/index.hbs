@@ -1,13 +1,23 @@
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script>
+    Handlebars.registerHelper('ifCond', function (v1, v2, options) {
+        if (v1 === v2) {
+            return options.fn(this);
+        }
+        return options.inverse(this);
+    });
+</script>
 <script type="text/javascript">
     function checkLab1() {
-        var checkbox = document.getElementById('lab1');
-        if (checkbox.checked == true) {
+        var checkbox1 = document.getElementById('lab1');
+        if (checkbox1.checked == false) {
             console.log("remotelab/status/lab1/on")
         } else {
             console.log("remotelab/status/lab1/off")
         }
-    }function checkLab2() {
-        
+
+    } function checkLab2() {
+
         var checkbox2 = document.getElementById('lab2');
         if (checkbox2.checked == true) {
             console.log("remotelab/status/lab2/on")
@@ -24,62 +34,105 @@
         }
     }
 </script>
+
 <div class="col-md-6 offset-md-3">
     <div class="card">
         <div class="card-header">
             <h1>Live Streamming Video Link.</h1>
         </div>
-        <form action="/send-mqtt" method="POST">
-            <div class="form-group">
-                <button class="btn btn-success btn-block">
+        <div class="form-group">
+            <form action="/sendMqttOff" method="POST">
+                <button class="btn btn-success btn-block" type="submit">
                     Send Mqtt
                 </button>
-
-                <div class="form-group">
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>
-                                <center> Lab1 </center>
-                            </th>
-                            <th>
-                                <center> Lab2 </center>
-                            </th>
-                            <th>
-                                <center> Lab3 </center>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>Status</th>
-                            <th>
-                                <center>
-                                    <label class="switch">
-                                        <input type="checkbox" onclick="checkLab1()" id="lab1" non-check />
-                                        <span class="slider round"></span>
-                                    </label>
-                                </center>
-                            </th>
-                            <th>
-                                <center>
-                                    <label class="switch">
-                                        <input type="checkbox" onclick="checkLab2()" id="lab2" non-checked />
-                                        <span class="slider round"></span>
-                                    </label>
-                                </center>
-                            </th>
-                            <th>
-                                <center>
-                                    <label class="switch">
-                                        <input type="checkbox" onclick="checkLab3()" id="lab3" non-checked />
-                                        <span class="slider round"></span>
-                                    </label>
-                                </center>
-                            </th>
-                        </tr>
-                    </table>
-                </div>
+            </form>
+            <form action="/checkboxLab" method="POST">
+                <label class="switch">
+                    {{!-- {{#if statusLab1}}
+                    <?php >
+                    <input type="checkbox" name="testLab1" value="on" checked />
+                    {{else}} --}}
+                    <input type="checkbox" name="testLab1" value="off" non-checked />
+                    {{!-- {{/if}} --}}
+                    <span class="slider round"></span>
+                </label>
+                <label class="switch">
+                    {{!-- {{#if statusLab2}}
+                    <input type="checkbox" name="testLab2" value="on" checked />
+                    {{else}} --}}
+                    <input type="checkbox" name="testLab2" value="on" non-checked />
+                    {{!-- {{/if}} --}}
+                    <span class="slider round"></span>
+                </label>
+                <label class="switch">
+                    {{!-- {{#if statusLab3}}
+                    <input type="checkbox" name="testLab3" value="on" checked />
+                    {{else}} --}}
+                    <input type="checkbox" name="testLab3" value="on" non-checked />
+                    {{!-- {{/if}} --}}
+                    <span class="slider round"></span>
+                </label>
+                <button class="btn btn-success btn-block" type="submit">
+                    Send Mqtt
+                </button>
+            </form>
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>
+                            <center> Lab1 </center>
+                        </th>
+                        <th>
+                            <center> Lab2 </center>
+                        </th>
+                        <th>
+                            <center> Lab3 </center>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <th>
+                            <center>
+                                <label class="switch">
+                                    <input type="checkbox" onclick="checkLab1()" id="lab1" non-checked />
+                                    <span class="slider round"></span>
+                                </label>
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                <label class="switch">
+                                    <input type="checkbox" onclick="checkLab2()" id="lab2" non-checked />
+                                    <span class="slider round"></span>
+                                </label>
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                <label class="switch">
+                                    <input type="checkbox" onclick="checkLab3()" id="lab3" non-checked />
+                                    <span class="slider round"></span>
+                                </label>
+                            </center>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <th>
+                            <center> {{statusLab1}} </center>
+                        </th>
+                        <th>
+                            <center> {{statusLab2}} </center>
+                        </th>
+                        <th>
+                            <center> {{statusLab3}} </center>
+                        </th>
+                    </tr>
+                </table>
             </div>
-        </form>
+        </div>
+
         <div class="card-body">
             {{#if lab1}}
             {{lab1}}
